@@ -1,0 +1,33 @@
+.cases-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.table-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.search-box {
+  width: 300px;
+}
+
+.case-number-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.text-right {
+  text-align: right;
+}
