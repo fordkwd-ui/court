@@ -1,0 +1,33 @@
+{
+  "id": "/",
+  "name": "Van Nyay – Forest Offence Case Management System",
+  "short_name": "Van Nyay",
+  "description": "Statutory tracking of Preliminary Offence Reports (POR), Charge Sheets, Malkhana Seizures, and Court Trials.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#166534",
+  "background_color": "#0f172a",
+  "categories": ["government", "productivity", "utilities"],
+  "icons": [
+    {
+      "src": "/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="forestShield" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14532d" />
+      <stop offset="50%" stop-color="#166534" />
+      <stop offset="100%" stop-color="#0f3d21" />
+    </linearGradient>
+    <linearGradient id="goldAcc" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="100%" stop-color="#eab308" />
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" rx="104" fill="#0f172a" />
+
+  <!-- Outer Shield Badge -->
+  <path d="M256 46 L426 94 C426 270 370 380 256 456 C142 380 86 270 86 94 Z" 
+        fill="url(#forestShield)" 
+        stroke="url(#goldAcc)" 
+        stroke-width="12" 
+        stroke-linejoin="round" />
+
+  <!-- Central Emblem: Forest Tree + Scales of Justice -->
+  <path d="M256 138 C228 138 210 156 210 180 C190 180 172 196 172 220 C172 240 184 256 204 260 C200 270 200 278 208 286 C220 298 238 300 256 296 C274 300 292 298 304 286 C312 278 312 270 308 260 C328 256 340 240 340 220 C340 196 322 180 302 180 C302 156 284 138 256 138 Z"
+        fill="#22c55e" 
+        opacity="0.9" />
+
+  <rect x="250" y="170" width="12" height="195" rx="6" fill="url(#goldAcc)" />
+  <path d="M226 365 L286 365 L276 380 L236 380 Z" fill="url(#goldAcc)" />
+
+  <rect x="165" y="215" width="182" height="8" rx="4" fill="url(#goldAcc)" />
+  <circle cx="256" cy="219" r="8" fill="#ffffff" stroke="#eab308" stroke-width="3" />
+
+  <line x1="176" y1="220" x2="158" y2="274" stroke="url(#goldAcc)" stroke-width="3" />
+  <line x1="176" y1="220" x2="194" y2="274" stroke="url(#goldAcc)" stroke-width="3" />
+  <path d="M150 274 C150 290 202 290 202 274 Z" fill="url(#goldAcc)" />
+
+  <line x1="336" y1="220" x2="318" y2="274" stroke="url(#goldAcc)" stroke-width="3" />
+  <line x1="336" y1="220" x2="354" y2="274" stroke="url(#goldAcc)" stroke-width="3" />
+  <path d="M310 274 C310 290 362 290 362 274 Z" fill="url(#goldAcc)" />
+
+  <circle cx="256" cy="110" r="5" fill="#fef08a" />
+</svg>

@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="forestShield" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14532d" />
+      <stop offset="50%" stop-color="#166534" />
+      <stop offset="100%" stop-color="#0f3d21" />
+    </linearGradient>
+    <linearGradient id="goldAcc" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="100%" stop-color="#eab308" />
+    </linearGradient>
+    <filter id="subtleShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.35" />
+    </filter>
+  </defs>
+
+  <!-- Outer Shield Badge -->
+  <path d="M256 36 L436 88 C436 280 376 396 256 476 C136 396 76 280 76 88 Z" 
+        fill="url(#forestShield)" 
+        stroke="url(#goldAcc)" 
+        stroke-width="12" 
+        stroke-linejoin="round"
+        filter="url(#subtleShadow)" />
+
+  <!-- Inner Subtle Border -->
+  <path d="M256 60 L412 106 C412 268 358 372 256 444 C154 372 100 268 100 106 Z" 
+        fill="none" 
+        stroke="rgba(255,255,255,0.18)" 
+        stroke-width="3" />
+
+  <!-- Central Emblem: Forest Tree + Scales of Justice -->
+  <!-- Tree Canopy / Crown -->
+  <path d="M256 128 C226 128 206 148 206 174 C184 174 166 192 166 216 C166 238 180 256 200 260 C196 270 196 280 204 288 C216 300 238 302 256 298 C274 302 296 300 308 288 C316 280 316 270 312 260 C332 256 346 238 346 216 C346 192 328 174 306 174 C306 148 286 128 256 128 Z"
+        fill="#22c55e" 
+        opacity="0.9" />
+
+  <!-- Scales of Justice Beam & Pillar -->
+  <!-- Vertical Pillar (Tree Trunk + Spire) -->
+  <rect x="250" y="160" width="12" height="210" rx="6" fill="url(#goldAcc)" />
+  <path d="M226 370 L286 370 L276 386 L236 386 Z" fill="url(#goldAcc)" />
+
+  <!-- Horizontal Beam -->
+  <rect x="160" y="210" width="192" height="8" rx="4" fill="url(#goldAcc)" />
+  <circle cx="256" cy="214" r="9" fill="#ffffff" stroke="#eab308" stroke-width="3" />
+
+  <!-- Left Scale Pan -->
+  <line x1="172" y1="216" x2="152" y2="276" stroke="url(#goldAcc)" stroke-width="3" />
+  <line x1="172" y1="216" x2="192" y2="276" stroke="url(#goldAcc)" stroke-width="3" />
+  <path d="M142 276 C142 294 202 294 202 276 Z" fill="url(#goldAcc)" />
+
+  <!-- Right Scale Pan -->
+  <line x1="340" y1="216" x2="320" y2="276" stroke="url(#goldAcc)" stroke-width="3" />
+  <line x1="340" y1="216" x2="360" y2="276" stroke="url(#goldAcc)" stroke-width="3" />
+  <path d="M310 276 C310 294 370 294 370 276 Z" fill="url(#goldAcc)" />
+
+  <!-- Stars / Emblems at Top -->
+  <circle cx="256" cy="104" r="6" fill="#fef08a" />
+  <circle cx="236" cy="108" r="4" fill="#fef08a" opacity="0.8" />
+  <circle cx="276" cy="108" r="4" fill="#fef08a" opacity="0.8" />
+</svg>

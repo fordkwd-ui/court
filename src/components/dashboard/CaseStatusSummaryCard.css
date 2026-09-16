@@ -1,0 +1,315 @@
+.case-status-summary-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.case-status-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding-bottom: 0.5rem;
+}
+
+.case-status-header-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.case-status-header-icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--radius-md);
+  background-color: var(--color-primary-50);
+  color: var(--color-primary-700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.case-status-view-toggle {
+  display: inline-flex;
+  background-color: var(--color-bg-base);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0.2rem;
+  gap: 0.25rem;
+}
+
+.case-status-toggle-btn {
+  background: none;
+  border: none;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.case-status-toggle-btn.active {
+  background-color: var(--color-surface);
+  color: var(--color-primary-800);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Visual Highlights Top Banner (Chart + Overview) */
+.case-status-overview-panel {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.5rem;
+  align-items: center;
+  background-color: var(--color-bg-base);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+}
+
+@media (max-width: 680px) {
+  .case-status-overview-panel {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+}
+
+.case-status-donut-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.case-status-donut-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.case-status-donut-val {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-text-primary);
+}
+
+.case-status-donut-sub {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  margin-top: 0.15rem;
+}
+
+.case-status-overview-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.case-status-headline-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.case-status-headline-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.case-status-headline-meta {
+  font-size: 0.775rem;
+  color: var(--color-text-secondary);
+}
+
+/* Stacked Multi-Segment Progress Bar */
+.case-status-stacked-bar-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.case-status-stacked-bar {
+  display: flex;
+  height: 14px;
+  border-radius: 9999px;
+  overflow: hidden;
+  background-color: var(--color-border);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.case-status-bar-segment {
+  height: 100%;
+  position: relative;
+  transition: width 0.4s ease, opacity 0.2s ease;
+  cursor: pointer;
+}
+
+.case-status-bar-segment:hover {
+  filter: brightness(1.1);
+  transform: scaleY(1.15);
+  z-index: 2;
+}
+
+.case-status-bar-legend-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.875rem;
+  font-size: 0.725rem;
+  color: var(--color-text-secondary);
+  margin-top: 0.25rem;
+}
+
+.case-status-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.case-status-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Individual Status Progress Breakdown Grid */
+.case-status-breakdown-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.case-status-card-item {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.875rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.case-status-card-item:hover {
+  border-color: var(--color-border-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.case-status-item-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.case-status-item-label-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.case-status-item-icon-wrap {
+  width: 1.875rem;
+  height: 1.875rem;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.case-status-item-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.case-status-item-desc {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  line-height: 1.35;
+  margin: 0.25rem 0 0 0;
+}
+
+.case-status-item-counts {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.case-status-item-count-val {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1;
+}
+
+.case-status-item-pct-val {
+  font-size: 0.725rem;
+  font-weight: 600;
+  color: var(--color-text-tertiary);
+  margin-top: 0.15rem;
+}
+
+/* Mini Progress Bar inside each status card */
+.case-status-item-progress-bar-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.case-status-item-progress-track {
+  width: 100%;
+  height: 6px;
+  background-color: var(--color-bg-base);
+  border-radius: 9999px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.case-status-item-progress-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.4s ease;
+}
+
+.case-status-item-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.725rem;
+  color: var(--color-text-tertiary);
+  padding-top: 0.35rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.case-status-item-action-link {
+  font-weight: 600;
+  color: var(--color-primary-700);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+}

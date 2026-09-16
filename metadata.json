@@ -1,0 +1,6 @@
+{
+  "name": "Van Nyay",
+  "description": "Statutory forest offence case management system for tracking Preliminary Offence Reports (POR), Charge Sheets, Malkhana Seizures, and Court Trials.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
