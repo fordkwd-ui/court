@@ -233,7 +233,9 @@ export const CaseDetail: React.FC = () => {
         judge: 'Hon. Chief Judicial Magistrate, Kawardha',
         appealDeadline: deadline,
         appealFiled: false,
-        appealNotes: 'Forest Department legal team advised to examine sentencing adequacy under Wildlife Protection Act amendments.'
+        appealNotes: isPoaching 
+          ? 'Forest Department legal team advised to examine sentencing adequacy under Wildlife Protection Act amendments.'
+          : 'Legal Cell recommends monitoring fine recovery and checking for repeat offence history.'
       });
       setIsProcessingOCR(false);
     }, 2000);
@@ -1173,17 +1175,29 @@ export const CaseDetail: React.FC = () => {
       {/* ================= MODAL: CHARGE SHEET COMPILE & SIGN ================= */}
       <Modal
         isOpen={isChargeSheetModalOpen}
-        onClose={() => setIsChargeSheetModalOpen(false)}
+        onClose={() => {
+          setIsChargeSheetModalOpen(false);
+          setCsStep(1);
+          setDscPin('');
+        }}
         title="Final Offence Report (Charge Sheet) Compilation & E-Sign"
         size="lg"
         footer={
           csStep === 3 ? (
-            <Button variant="primary" onClick={() => setIsChargeSheetModalOpen(false)}>
+            <Button variant="primary" onClick={() => {
+              setIsChargeSheetModalOpen(false);
+              setCsStep(1);
+              setDscPin('');
+            }}>
               Done & View Dossier
             </Button>
           ) : (
             <>
-              <Button variant="ghost" onClick={() => setIsChargeSheetModalOpen(false)}>Cancel</Button>
+              <Button variant="ghost" onClick={() => {
+                setIsChargeSheetModalOpen(false);
+                setCsStep(1);
+                setDscPin('');
+              }}>Cancel</Button>
               <Button 
                 variant="primary" 
                 onClick={handleCompileChargeSheet} 
@@ -1435,6 +1449,17 @@ export const CaseDetail: React.FC = () => {
           </div>
         </div>
       </Modal>
+
+      {/* ================= MODAL: EDIT CASE ================= */}
+      <EditCaseModal
+        isOpen={isEditModalOpen}
+        onClose={() => setIsEditModalOpen(false)}
+        currentCase={currentCase}
+        onSave={(updates, actor) => {
+          updateCase(currentCase.id, updates, actor);
+          setIsEditModalOpen(false);
+        }}
+      />
     </div>
   );
 };

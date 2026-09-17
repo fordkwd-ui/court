@@ -551,14 +551,15 @@ export const ScanOcrModal: React.FC<ScanOcrModalProps> = ({
                 <Select
                   value={extractedData.offence}
                   onChange={(e) => setExtractedData({ ...extractedData, offence: e.target.value as OffenceType })}
-                >
-                  <option value="Illegal Cutting">Illegal Cutting</option>
-                  <option value="Poaching">Poaching</option>
-                  <option value="Encroachment">Encroachment</option>
-                  <option value="Wildlife Trade">Wildlife Trade</option>
-                  <option value="Illegal Mining">Illegal Mining</option>
-                  <option value="Forest Fire Arson">Forest Fire Arson</option>
-                </Select>
+                  options={[
+                    { value: 'Illegal Cutting', label: 'Illegal Cutting' },
+                    { value: 'Poaching', label: 'Poaching' },
+                    { value: 'Encroachment', label: 'Encroachment' },
+                    { value: 'Wildlife Trade', label: 'Wildlife Trade' },
+                    { value: 'Illegal Mining', label: 'Illegal Mining' },
+                    { value: 'Forest Fire Arson', label: 'Forest Fire Arson' }
+                  ]}
+                />
               </div>
 
               {/* Field: Title */}

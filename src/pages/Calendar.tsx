@@ -17,7 +17,8 @@ import {
   ExternalLink,
   Bell,
   ShieldAlert,
-  Clock
+  Clock,
+  MessageSquare
 } from 'lucide-react';
 import './Calendar.css';
 import { useCases } from '../hooks/useCases';
@@ -168,6 +169,49 @@ export const Calendar: React.FC = () => {
     }, 600);
   };
 
+  const handleBroadcastSms = async () => {
+    // Find deadlines in the next 7 days
+    const now = new Date();
+    const nextWeek = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+    const upcomingDeadlines = allDeadlines.filter(d => {
+      const dDate = new Date(d.dueDate);
+      return dDate >= now && dDate <= nextWeek;
+    });
+
+    if (upcomingDeadlines.length === 0) {
+      alert("No upcoming deadlines in the next 7 days to notify.");
+      return;
+    }
+
+    // Extract unique case IDs to notify IOs
+    const uniqueCaseIds = Array.from(new Set(upcomingDeadlines.map(d => d.caseId)));
+    const ioNames = uniqueCaseIds.map(id => cases.find(c => c.id === id)?.io).filter(Boolean);
+    const uniqueIos = Array.from(new Set(ioNames));
+
+    try {
+      // Simulate API call to our backend SMS Gateway
+      const res = await fetch('/api/notifications/sms', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          recipients: uniqueIos.map(io => `${io} (+91 94252 XXXXX)`),
+          message: `URGENT: You have ${upcomingDeadlines.length} statutory deadline(s) approaching in the next 7 days. Please check the Van Nyay portal.`,
+          senderId: 'VAN-NYAY-ALERTS'
+        })
+      });
+      
+      const data = await res.json();
+      if (res.ok) {
+        alert(`📱 SMS Broadcast Successful!\n\nSent reminders to ${uniqueIos.length} Investigating Officer(s):\n${uniqueIos.join(', ')}`);
+      } else {
+        alert('Failed to broadcast SMS: ' + data.error);
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Error connecting to the simulated SMS Gateway endpoint. Ensure the dev server is running.');
+    }
+  };
+
   return (
     <div className="calendar-container">
       {/* Toast Notification Stack for Upcoming Deadlines */}
@@ -225,6 +269,9 @@ export const Calendar: React.FC = () => {
             {viewDate.toLocaleString('default', { month: 'long', year: 'numeric' })}
           </span>
           <Button variant="outline" rightIcon={<ChevronRight size={18} />} onClick={nextMonth}>Next</Button>
+          <Button variant="outline" leftIcon={<MessageSquare size={16} />} onClick={handleBroadcastSms} title="Send SMS Reminders to IOs for deadlines within 7 days">
+            Broadcast SMS
+          </Button>
           <Button variant="outline" leftIcon={<Printer size={16} />} onClick={() => setIsCauseListOpen(true)}>
             Cause List
           </Button>

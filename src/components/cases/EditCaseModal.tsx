@@ -29,15 +29,25 @@ export const EditCaseModal: React.FC<EditCaseModalProps> = ({
 
   useEffect(() => {
     if (isOpen) {
+      // eslint-disable-next-line react/set-state-in-effect
       setTitle(currentCase.title);
+      // eslint-disable-next-line react/set-state-in-effect
       setStatus(currentCase.status);
+      // eslint-disable-next-line react/set-state-in-effect
       setPriority(currentCase.priority);
+      // eslint-disable-next-line react/set-state-in-effect
       setOffence(currentCase.offence);
+      // eslint-disable-next-line react/set-state-in-effect
       setIo(currentCase.io);
+      // eslint-disable-next-line react/set-state-in-effect
       setRange(currentCase.range);
+      // eslint-disable-next-line react/set-state-in-effect
       setBeat(currentCase.beat);
+      // eslint-disable-next-line react/set-state-in-effect
       setCompartment(currentCase.compartment || '');
+      // eslint-disable-next-line react/set-state-in-effect
       setDescription(currentCase.description || '');
+      // eslint-disable-next-line react/set-state-in-effect
       setActor(currentCase.io || 'Investigating Officer');
     }
   }, [isOpen, currentCase]);

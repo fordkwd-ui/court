@@ -2,7 +2,6 @@ import React, { useState, useMemo } from 'react';
 import { 
   History, 
   Search, 
-  Filter, 
   ArrowUpDown, 
   Plus, 
   CheckCircle2, 
@@ -19,9 +18,7 @@ import {
   FilePlus, 
   User, 
   Clock, 
-  ArrowRight,
-  ShieldCheck,
-  Download
+  ArrowRight
 } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';

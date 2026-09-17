@@ -1,4 +1,5 @@
-import type { ForestCase, HearingItem, ForestOfficer, InvestigationLog, EvidenceItem, JudgmentDetails, CaseActivity, ActivityType } from '../types/case';
+import type { ForestCase, HearingItem, ForestOfficer, InvestigationLog, EvidenceItem, JudgmentDetails, CaseActivity } from '../types/case';
+import { supabase } from '../lib/supabase';
 
 export function generateInitialActivities(c: ForestCase): CaseActivity[] {
   const list: CaseActivity[] = [];
@@ -809,6 +810,59 @@ class CaseStore {
 
   constructor() {
     this.loadFromStorage();
+    this.hydrateFromSupabase();
+  }
+
+  private async hydrateFromSupabase() {
+    try {
+      const { data, error } = await supabase
+        .from('app_state')
+        .select('data')
+        .eq('id', 'van_nyay_global')
+        .single();
+        
+      if (error) {
+        console.warn('Supabase Hydration Error (Will use local storage instead):', error.message);
+        return;
+      }
+      
+      if (data && data.data) {
+        const parsed = data.data;
+        if (parsed.cases && Array.isArray(parsed.cases)) {
+          this.cases = parsed.cases;
+        }
+        if (parsed.officers && Array.isArray(parsed.officers)) {
+          this.officers = parsed.officers;
+        }
+        console.log('Successfully hydrated state from Supabase Cloud!');
+        this.notify();
+      }
+    } catch (err) {
+      console.warn('Failed to hydrate from Supabase:', err);
+    }
+  }
+
+  private async syncToSupabase() {
+    try {
+      const payload = {
+        cases: this.cases,
+        officers: this.officers,
+        last_updated: new Date().toISOString()
+      };
+      
+      const { error } = await supabase
+        .from('app_state')
+        .upsert({ 
+          id: 'van_nyay_global', 
+          data: payload 
+        });
+        
+      if (error) {
+        console.error('Failed to sync state to Supabase:', error);
+      }
+    } catch (err) {
+      console.error('Failed to sync state to Supabase (Exception):', err);
+    }
   }
 
   private loadFromStorage() {
@@ -837,6 +891,7 @@ class CaseStore {
   private saveCases() {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(this.cases));
+      this.syncToSupabase();
     } catch {
       // ignore
     }
@@ -846,6 +901,7 @@ class CaseStore {
   private saveOfficers() {
     try {
       localStorage.setItem(OFFICERS_KEY, JSON.stringify(this.officers));
+      this.syncToSupabase();
     } catch {
       // ignore
     }

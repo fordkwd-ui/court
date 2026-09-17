@@ -21,7 +21,8 @@ import {
   Globe,
   Palette,
   Sun,
-  Moon
+  Moon,
+  MessageSquare
 } from 'lucide-react';
 import './Settings.css';
 import { useCases } from '../hooks/useCases';
@@ -41,6 +42,12 @@ export const Settings: React.FC = () => {
   const [dfoName, setDfoName] = useState('Vikram Singh, IFS (DFO)');
   const [contactEmail, setContactEmail] = useState('dfo.kabirdham@cg.gov.in');
   const [highCourtLiaison, setHighCourtLiaison] = useState('Bilaspur High Court Forest Legal Cell');
+
+  // SMS Gateway Configuration State
+  const [smsEnabled, setSmsEnabled] = useState(false);
+  const [twilioSid, setTwilioSid] = useState('ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+  const [twilioToken, setTwilioToken] = useState('••••••••••••••••••••••••••••••••');
+  const [twilioPhone, setTwilioPhone] = useState('+1234567890');
 
   // New Officer Modal State
   const [isOfficerModalOpen, setIsOfficerModalOpen] = useState(false);
@@ -279,6 +286,53 @@ export const Settings: React.FC = () => {
                     </button>
                   </div>
                 </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* SMS Notification Gateway */}
+          <Card className="settings-section">
+            <CardHeader>
+              <CardTitle className="section-title">
+                <MessageSquare size={20} /> SMS Gateway Configuration
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1rem', backgroundColor: smsEnabled ? 'var(--color-primary-50)' : 'var(--color-bg-base)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)' }}>
+                  <div>
+                    <h4 style={{ margin: '0 0 0.25rem 0' }}>Automated SMS Alerts</h4>
+                    <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--color-text-secondary)' }}>Send statutory deadline reminders to Investigating Officers via Twilio.</p>
+                  </div>
+                  <Button 
+                    type="button"
+                    variant={smsEnabled ? "primary" : "outline"} 
+                    onClick={() => setSmsEnabled(!smsEnabled)}
+                  >
+                    {smsEnabled ? 'Enabled' : 'Disabled'}
+                  </Button>
+                </div>
+                
+                {smsEnabled && (
+                  <div className="form-grid" style={{ marginTop: '0.5rem' }}>
+                    <Input 
+                      label="Twilio Account SID" 
+                      value={twilioSid} 
+                      onChange={(e) => setTwilioSid(e.target.value)}
+                    />
+                    <Input 
+                      label="Twilio Auth Token" 
+                      type="password"
+                      value={twilioToken} 
+                      onChange={(e) => setTwilioToken(e.target.value)}
+                    />
+                    <Input 
+                      label="Sender Phone Number" 
+                      value={twilioPhone} 
+                      onChange={(e) => setTwilioPhone(e.target.value)}
+                    />
+                  </div>
+                )}
               </div>
             </CardContent>
           </Card>
